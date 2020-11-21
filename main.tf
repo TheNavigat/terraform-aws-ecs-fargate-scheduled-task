@@ -33,7 +33,7 @@ resource "aws_iam_role_policy" "scheduled_task_event_role_policy" {
 # Cloudwatch event rule and target
 #####
 resource "aws_cloudwatch_event_rule" "event_rule" {
-  name                = var.event_rule_name == "" ? "${var.name_prefix}-rule" : var.event_rule_name
+  name                = var.event_rule_name == "" ? "${var.name_prefix}_rule" : var.event_rule_name
   description         = var.event_rule_description
   schedule_expression = var.event_rule_schedule_expression
   event_pattern       = var.event_rule_event_pattern
@@ -43,7 +43,7 @@ resource "aws_cloudwatch_event_rule" "event_rule" {
   tags = merge(
     var.tags,
     {
-      Name = var.event_rule_name == "" ? "${var.name_prefix}-rule" : var.event_rule_name
+      Name = var.event_rule_name == "" ? "${var.name_prefix}_rule" : var.event_rule_name
     }
   )
 }
